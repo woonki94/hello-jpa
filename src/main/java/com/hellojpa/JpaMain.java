@@ -76,11 +76,30 @@ public class JpaMain {
             //em.persist(member2);
             //System.out.println("================="); //이후에 insert query가 나간다..
 
-            Member member = new Member();
+            //Member member = new Member();
             //member.setId("ID_A");
-            member.setUsername("C");
+            //member.setUsername("C");
 
+            //em.persist(member);
+
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            //member.setTeamId(team.getId());
+            member.setTeam(team);
             em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+
+            //Long findTeamId = findMember.getTeamId();
+            //Team findTeam = em.find(Team.class, findTeamId); //연관관계가 없어서 계속 em에 물어봐야함... 객체 지향적이지 않다.
+            Team findTeam = findMember.getTeam();
+            System.out.println("findTeam = " + findTeam.getName());
+
+
             //commit해야 db에 반영
             tx.commit();
         }catch (Exception e){
