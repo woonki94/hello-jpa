@@ -62,8 +62,8 @@ public class JpaMain {
             /**
              * 변경감지(dirty checking)
              */
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZ"); // em.persist(member) 할필요가 없다.
+            //Member member = em.find(Member.class, 150L);
+            //member.setName("ZZZZ"); // em.persist(member) 할필요가 없다.
 
 
             /**
@@ -76,7 +76,11 @@ public class JpaMain {
             //em.persist(member2);
             //System.out.println("================="); //이후에 insert query가 나간다..
 
+            Member member = new Member();
+            //member.setId("ID_A");
+            member.setUsername("C");
 
+            em.persist(member);
             //commit해야 db에 반영
             tx.commit();
         }catch (Exception e){
