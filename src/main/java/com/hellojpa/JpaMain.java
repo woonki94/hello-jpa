@@ -84,6 +84,7 @@ public class JpaMain {
 
             Team team = new Team();
             team.setName("TeamA");
+            //team.getMembers().add(member);  // member의 teamId는 null로 설정된다. member.setTeam(team)으로 해야함.
             em.persist(team);
 
             Member member = new Member();
@@ -92,12 +93,21 @@ public class JpaMain {
             member.setTeam(team);
             em.persist(member);
 
+
+
+            em.flush();
+            em.clear();
+
             Member findMember = em.find(Member.class, member.getId());
 
             //Long findTeamId = findMember.getTeamId();
             //Team findTeam = em.find(Team.class, findTeamId); //연관관계가 없어서 계속 em에 물어봐야함... 객체 지향적이지 않다.
-            Team findTeam = findMember.getTeam();
-            System.out.println("findTeam = " + findTeam.getName());
+
+            List<Member> members = findMember.getTeam().getMembers();
+            for(Member m :members){
+                System.out.println("m.getUsername() = " + m.getUsername());
+            }
+
 
 
             //commit해야 db에 반영

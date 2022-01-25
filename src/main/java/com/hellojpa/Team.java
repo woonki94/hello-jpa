@@ -1,9 +1,8 @@
 package com.hellojpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -12,6 +11,9 @@ public class Team {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "team") //mappedBy -> member의 변수 team에 mapping이 되어있음을 알려줌  //연관관계의 주인이 member객체의 Team team
+    private List<Member> members  =new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -27,5 +29,13 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }
