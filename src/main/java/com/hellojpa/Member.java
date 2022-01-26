@@ -4,7 +4,7 @@ import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+//@Entity
 //@SequenceGenerator(name ="member_seq_generator", sequenceName = "member_seq")
 //@TableGenerator(
 //        name = "MEMBER_SEQ_GENERATOR",
@@ -70,7 +70,15 @@ public class Member {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(Team team){
         this.team = team;
+    }
+
+    public void changeTeam(Team team) {
+        this.team = team;
+        /**
+         * 연관관계 편의 메서드 생성
+         */
+        team.getMembers().add(this);  // this == 현재 Member객체
     }
 }

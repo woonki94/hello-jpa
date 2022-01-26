@@ -90,8 +90,13 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("member1");
             //member.setTeamId(team.getId());
-            member.setTeam(team);
+            /**
+             * 양방향 연관관계 매핑이 됨.
+             */
+            member.changeTeam(team);
             em.persist(member);
+
+            team.addMember(member);   //member.changeTeam(team) or  team.addMember(member); 둘중에 하나 선택해서 작성.
 
 
 

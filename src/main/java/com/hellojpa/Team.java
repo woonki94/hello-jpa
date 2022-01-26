@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 public class Team {
     @Id@GeneratedValue
     @Column(name = "TEAM_ID")
@@ -14,6 +14,11 @@ public class Team {
 
     @OneToMany(mappedBy = "team") //mappedBy -> member의 변수 team에 mapping이 되어있음을 알려줌  //연관관계의 주인이 member객체의 Team team
     private List<Member> members  =new ArrayList<>();
+
+    public void addMember(Member member){
+        member.setTeam(this);
+        members.add(member);
+    }
 
     public Long getId() {
         return id;
