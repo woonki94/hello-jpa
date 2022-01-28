@@ -23,6 +23,11 @@ public class Member {
     @Column(name ="USERNAME")  //db column명은 name이다.
     private String username;
 
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
+
 
     /**
     //@Column(name = "TEAM_ID")
