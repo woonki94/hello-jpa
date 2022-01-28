@@ -4,7 +4,7 @@ import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.util.Date;
 
-//@Entity
+@Entity
 //@SequenceGenerator(name ="member_seq_generator", sequenceName = "member_seq")
 //@TableGenerator(
 //        name = "MEMBER_SEQ_GENERATOR",
@@ -23,12 +23,14 @@ public class Member {
     @Column(name ="USERNAME")  //db column명은 name이다.
     private String username;
 
+
+    /**
     //@Column(name = "TEAM_ID")
     //private Long teamId;
     @ManyToOne
     @JoinColumn(name = "TEAM_ID") //foreign key를 mapping
     private  Team team; // team과 member의 연관관계를 알려줘야한다.
-
+    **/
 
     /**
      private Integer age; //int == Integer
@@ -66,19 +68,12 @@ public class Member {
         this.username = username;
     }
 
-    public Team getTeam() {
-        return team;
-    }
 
-    public void setTeam(Team team){
-        this.team = team;
-    }
 
-    public void changeTeam(Team team) {
-        this.team = team;
+
         /**
          * 연관관계 편의 메서드 생성
          */
-        team.getMembers().add(this);  // this == 현재 Member객체
-    }
+        //team.getMembers().add(this);  // this == 현재 Member객체
+    //}
 }

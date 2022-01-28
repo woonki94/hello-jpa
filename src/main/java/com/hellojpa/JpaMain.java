@@ -15,6 +15,9 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
+
+
+
         try {
             //저장
             //Member member = new Member();
@@ -82,37 +85,50 @@ public class JpaMain {
 
             //em.persist(member);
 
-            Team team = new Team();
-            team.setName("TeamA");
+            //Team team = new Team();
+            //team.setName("TeamA");
             //team.getMembers().add(member);  // member의 teamId는 null로 설정된다. member.setTeam(team)으로 해야함.
-            em.persist(team);
+            //em.persist(team);
 
-            Member member = new Member();
-            member.setUsername("member1");
+            //Member member = new Member();
+            //member.setUsername("member1");
             //member.setTeamId(team.getId());
             /**
              * 양방향 연관관계 매핑이 됨.
              */
-            member.changeTeam(team);
-            em.persist(member);
+            //member.changeTeam(team);
+            //em.persist(member);
 
-            team.addMember(member);   //member.changeTeam(team) or  team.addMember(member); 둘중에 하나 선택해서 작성.
+            //team.addMember(member);   //member.changeTeam(team) or  team.addMember(member); 둘중에 하나 선택해서 작성.
 
 
 
-            em.flush();
-            em.clear();
+            //em.flush();
+            //em.clear();
 
-            Member findMember = em.find(Member.class, member.getId());
+            //Member findMember = em.find(Member.class, member.getId());
 
             //Long findTeamId = findMember.getTeamId();
             //Team findTeam = em.find(Team.class, findTeamId); //연관관계가 없어서 계속 em에 물어봐야함... 객체 지향적이지 않다.
 
-            List<Member> members = findMember.getTeam().getMembers();
-            for(Member m :members){
-                System.out.println("m.getUsername() = " + m.getUsername());
-            }
+            //List<Member> members = findMember.getTeam().getMembers();
+           /// for(Member m :members){
+            //    System.out.println("m.getUsername() = " + m.getUsername());
+          //  }
 
+
+            /**
+             * 일대 다 단방향
+             */
+            Member member = new Member();
+            member.setUsername("member1");
+            em.persist(member);
+
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+
+            em.persist(team);
 
 
             //commit해야 db에 반영
