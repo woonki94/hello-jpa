@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
+//@Entity
 public class MemberProduct {
     @Id@GeneratedValue
     private Long id;

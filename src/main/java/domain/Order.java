@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
+@Entity
 @Table(name = "ORDERS")
 public class Order {
 
@@ -25,6 +25,10 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> OrderItems = new ArrayList<>();
 
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
 
     private LocalDateTime orderDate;
     @Enumerated(EnumType.STRING)

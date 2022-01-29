@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+//@Entity
 //@SequenceGenerator(name ="member_seq_generator", sequenceName = "member_seq")
 //@TableGenerator(
 //        name = "MEMBER_SEQ_GENERATOR",
